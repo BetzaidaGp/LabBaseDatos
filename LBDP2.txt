@@ -1,0 +1,69 @@
+Create TABLE [Hoteles]
+(
+[ID] INT IDENTITY (1,1) Not null PRIMARY KEY,
+[Nombre] varchar(30) not null,
+[Categoria] varchar(30) not null,
+[Ciudad] Varchar(30) not null,
+[Precio] money not null
+)
+
+Create TABLE [Transporte]
+(
+[ID] INT IDENTITY (1,1) Not null PRIMARY KEY,
+[Nombre] varchar(30) not null,
+[Origen] varchar(30) not null,
+[Destino] Varchar(30) not null,
+[Precio] money not null,
+[FechaSalida] date not null,
+[FechaLlegada] date not null,
+[HoraLlegada] time not null,
+[Estrellas] Tinyint not null
+)
+
+Create TABLE [Pagos]
+(
+[ID] INT IDENTITY (1,1) Not null PRIMARY KEY,
+[Nombre] varchar(30) not null,
+[Monto] float not null,
+[Pagado] float not null,
+[Total] AS Monto+(Monto *0.16),
+[Cambio] As Pagado-(Monto+(Monto *0.16))
+)
+
+Create TABLE [Clientes]
+(
+[ID] uniqueidentifier Not null PRIMARY KEY,
+[Nombre] varchar(30) not null,
+[Apellido] Varchar(30) not null,
+[Telefono] Int not null,
+[Fecha] date not null
+)
+CREATE INDEX IndexX
+ON Clientes (Nombre);
+
+Create TABLE [Comentario]
+(
+[ID] int identity (1,1) Not null PRIMARY KEY,
+[Nombre] varchar(30) not null,
+[Comentario] text not null
+)
+
+Create TABLE [Conductor]
+(
+[ID] int identity (1,1) Not null PRIMARY KEY,
+[Nombre] varchar(30) not null,
+[Apellido] varchar(30) not null,
+[Telefono] int not null,
+[Fecha] date not null
+)
+
+Create TABLE [Promociones]
+(
+[ID] int identity (1,1) Not null PRIMARY KEY,
+[Nombre] varchar(30) not null,
+[Tipo] varchar(30) not null,
+[Costo] float not null,
+[Descuento] float not null,
+[Promocion] as Costo-Descuento
+)
+
